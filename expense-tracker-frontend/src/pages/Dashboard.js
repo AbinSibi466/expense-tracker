@@ -34,6 +34,7 @@ const Dashboard = () => {
                 console.error('Error fetching expenses:', err);
             }
         };
+        
 
         fetchExpenses();
     }, []);
@@ -60,8 +61,8 @@ const Dashboard = () => {
     return (
         <div>
             <h1>Dashboard</h1>
-            {/* <ExpenseChart /> */}
-            {/* <ExpenseList expenses={expenses} onEdit={handleEditExpense} /> */}
+            <ExpenseChart expenses={expenses} />
+            <ExpenseList expenses={expenses} onEdit={handleEditExpense} />
 
           
         </div>

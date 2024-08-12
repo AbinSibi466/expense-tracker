@@ -16,7 +16,7 @@ exports.getExpenses = async (req, res) => {
 // @access  Private
 exports.createExpense = async (req, res) => {
     try {
-        const { summary, description, date, category, tags } = req.body;
+        const { summary, description, date, category, tags,amount } = req.body;
 
         const newExpense = new Expense({
             summary,
@@ -24,7 +24,8 @@ exports.createExpense = async (req, res) => {
             date,
             category,
             tags,
-            user: req.user.id
+            user: req.user.id,
+            amount
         });
 
         const expense = await newExpense.save();
@@ -39,10 +40,10 @@ exports.createExpense = async (req, res) => {
 // @access  Private
 exports.updateExpense = async (req, res) => {
     try {
-        const { summary, description, date, category, tags } = req.body;
+        const { summary, description, date, category, tags,amount } = req.body;
         const updatedExpense = await Expense.findByIdAndUpdate(
             req.params.id,
-            { summary, description, date, category, tags },
+            { summary, description, date, category, tags,amount },
             { new: true }
         );
         res.json(updatedExpense);

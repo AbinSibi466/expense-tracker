@@ -7,6 +7,7 @@ const ExpenseForm = ({ expenseToEdit, onSave }) => {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [category, setCategory] = useState('');
   const [tags, setTags] = useState('');
+  const [amount, setAmount] = useState('');
   const [categories, setCategories] = useState([]);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [newCategory, setNewCategory] = useState('');
@@ -18,6 +19,7 @@ const ExpenseForm = ({ expenseToEdit, onSave }) => {
       setDate(expenseToEdit.date.split('T')[0]);
       setCategory(expenseToEdit.category);
       setTags(expenseToEdit.tags.join(', '));
+      setAmount(expenseToEdit.amount); // Set amount if editing an expense
     }
   }, [expenseToEdit]);
 
@@ -43,6 +45,7 @@ const ExpenseForm = ({ expenseToEdit, onSave }) => {
         date,
         category,
         tags: tags.split(',').map(tag => tag.trim()),
+        amount: parseFloat(amount), // Convert amount to number
       };
 
       if (expenseToEdit) {
@@ -133,6 +136,17 @@ const ExpenseForm = ({ expenseToEdit, onSave }) => {
             style={styles.input}
           />
         </div>
+        <div style={styles.formGroup}>
+          <label style={styles.label}>Amount</label>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            required
+            step="0.01" // Allow decimal values
+            style={styles.input}
+          />
+        </div>
         <button type="submit" style={styles.submitButton}>{expenseToEdit ? 'Update' : 'Save'}</button>
       </form>
 
@@ -161,37 +175,36 @@ const styles = {
   },
   form: {
     backgroundColor: 'white',
-    padding: '20px',
-    paddingRight: '40px',
+    padding: '15px', // Reduced padding
     borderRadius: '8px',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
     width: '100%',
-    maxWidth: '600px',
+    maxWidth: '500px', // Reduced max width
     margin: 'auto',
   },
   title: {
     textAlign: 'center',
-    marginBottom: '20px',
+    marginBottom: '15px', // Reduced margin bottom
   },
   formGroup: {
-    marginBottom: '15px',
+    marginBottom: '10px', // Reduced margin bottom
   },
   label: {
     display: 'block',
     marginBottom: '5px',
   },
   input: {
-    padding: '10px',
-    margin:'10px',
+    padding: '8px', // Reduced padding
+    margin: '5px 0', // Adjusted margin
     borderRadius: '4px',
     border: '1px solid #ddd',
   },
   textarea: {
     width: '100%',
-    padding: '10px',
+    padding: '8px', // Reduced padding
     borderRadius: '4px',
     border: '1px solid #ddd',
-    minHeight: '100px',
+    minHeight: '80px', // Adjusted min height
   },
   categoryContainer: {
     display: 'flex',
@@ -211,7 +224,7 @@ const styles = {
     color: 'white',
     border: 'none',
     borderRadius: '4px',
-    padding: '10px 20px',
+    padding: '8px 16px', // Reduced padding
     cursor: 'pointer',
     width: '100%',
   },
@@ -220,7 +233,7 @@ const styles = {
     color: 'white',
     border: 'none',
     borderRadius: '4px',
-    padding: '10px 20px',
+    padding: '8px 16px', // Reduced padding
     cursor: 'pointer',
     marginTop: '10px',
     width: '100%',

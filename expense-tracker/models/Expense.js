@@ -20,6 +20,10 @@ const ExpenseSchema = new mongoose.Schema({
     type: [String], // Change to [String] if it's an array of strings
     default: [],
   },
+  amount: {
+    type: Number, // Change to [String] if it's an array of strings
+    required: true,
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
