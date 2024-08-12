@@ -1,0 +1,32 @@
+/* App.css */
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensures the sidebar is above the content */
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  margin-left: 250px;
+  padding: 20px;
+  width: calc(100% - 250px);
+  background-color: #f5f5f5; /* Optional: to visually differentiate content area */
+  min-height: 100vh; /* Ensures the content area takes up the full viewport height */
+}
+
+.sidebar.collapsed + .content {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
