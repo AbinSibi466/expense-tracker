@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import './App.css'
 import AddExpense from './components/AddExpense';
+import CategoryList from './components/CategoryList';
 // Import other pages like AddExpense, ExpenseList, Categories, Tags
 
 const App = () => {
@@ -20,9 +21,8 @@ const App = () => {
             <Route path="/" element={<Dashboard />} />
             {/* Define routes for other pages */}
             <Route path="/add-expense" element={<AddExpense />} />
-            {/* <Route path="/expenses" element={<ExpenseList />} />
-            <Route path="/categories" element={<Categories />} />
-            <Route path="/tags" element={<Tags />} /> */}
+            <Route path="/categories" element={<CategoryList />} />
+            {/* <Route path="/tags" element={<Tags />} /> */}
           </Routes>
         </div>
       </div>
