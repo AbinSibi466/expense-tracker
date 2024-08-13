@@ -1,5 +1,12 @@
 /* App.css */
 
+.content-no-sidebar {
+  margin-left: 0;
+  padding: 20px;
+  width: 100%;
+}
+
+
 .app {
   display: flex;
   height: 100vh;
@@ -7,7 +14,7 @@
 
 .sidebar {
   width: 250px;
-  background-color: #333;
+  background: linear-gradient(to right, #2c3e50, #4ca1af);
   color: white;
   height: 100vh;
   position: fixed;

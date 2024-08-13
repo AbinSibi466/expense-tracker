@@ -1,28 +1,40 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Sidebar from './components/SideBar';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import './App.css'
 import AddExpense from './components/AddExpense';
 import CategoryList from './components/CategoryList';
-// Import other pages like AddExpense, ExpenseList, Categories, Tags
+import TagList from './components/TagList';
+import './App.css';
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
+  };
+
   return (
     <Router>
       <div className="app">
-        <Sidebar />
-        <div className="content">
+        {/* Conditionally render Sidebar only if the user is authenticated */}
+        {isAuthenticated && <Sidebar onLogout={handleLogout} />}
+        <div className={isAuthenticated ? "content" : "content-no-sidebar"}>
           <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-            <Route path="/" element={<Dashboard />} />
-            {/* Define routes for other pages */}
-            <Route path="/add-expense" element={<AddExpense />} />
-            <Route path="/categories" element={<CategoryList />} />
-            {/* <Route path="/tags" element={<Tags />} /> */}
+            <Route path="/" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
+            <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/add-expense" element={isAuthenticated ? <AddExpense /> : <Navigate to="/login" />} />
+            <Route path="/categories" element={isAuthenticated ? <CategoryList /> : <Navigate to="/login" />} />
+            <Route path="/tags" element={isAuthenticated ? <TagList /> : <Navigate to="/login" />} />
           </Routes>
         </div>
       </div>
@@ -31,4 +43,3 @@ const App = () => {
 };
 
 export default App;
-

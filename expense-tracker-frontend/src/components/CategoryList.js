@@ -151,17 +151,17 @@ const styles = {
     gap: '20px',
   },
   card: {
-    backgroundColor: '#fff',
+    background: 'linear-gradient(to right, #2c3e50, #4ca1af)',
     padding: '20px',
     width: '250px',
     borderRadius: '8px',
     boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
     textAlign: 'center',
     position: 'relative',
+    color:'white'
   },
   categoryName: {
     marginBottom: '20px',
-    color: '#555',
   },
   buttonGroup: {
     display: 'flex',

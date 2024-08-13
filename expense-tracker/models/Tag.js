@@ -1,17 +1,13 @@
+// models/Tag.js
+
 const mongoose = require('mongoose');
 
 const TagSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    }
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 });
 
-const Tag = mongoose.model('Tag', TagSchema);
-module.exports = Tag;
+module.exports = mongoose.model('Tag', TagSchema);

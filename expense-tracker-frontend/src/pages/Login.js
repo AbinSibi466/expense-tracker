@@ -1,20 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from '../axiosConfig';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+
+    const token = localStorage.getItem('token')
+
+    console.log('huuu', token)
+
+    if (token) {
+        navigate('/')
+    }
+
+  },[])
+
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const res = await axios.post('/api/auth/login', { email, password });
-      localStorage.setItem('token', res.data.token);
+      const response = await axios.post('/api/auth/login', { email, password });
+
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      setIsAuthenticated(true);
       navigate('/');
     } catch (err) {
-      console.error(err);
+      setError('Login failed');
     }
   };
 
@@ -48,7 +67,8 @@ const Login = () => {
           </button>
         </form>
         <div style={styles.forgotPassword}>
-          <a href="#" style={styles.link}>Forgot Password?</a>
+
+          <Link to="/register" style={styles.link}>Create an account?</Link>
         </div>
       </div>
     </div>

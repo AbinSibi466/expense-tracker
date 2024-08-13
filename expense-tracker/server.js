@@ -22,7 +22,7 @@ app.use('/api/auth', authRouter);  // Use authRouter as middleware
 
 app.use('/api/expenses', expenseRouter);
 app.use('/api/categories', categoryRouter);
-// app.use('/api/tags', tagRouter);
+app.use('/api/tags', tagRouter);
 
 
 const PORT = process.env.PORT || 5000;

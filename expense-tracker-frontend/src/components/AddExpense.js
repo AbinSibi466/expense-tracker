@@ -236,13 +236,14 @@ const styles = {
     gap: '10px',
   },
   card: {
-    backgroundColor: 'white',
+    background: 'linear-gradient(to right, #2c3e50, #4ca1af)',
     padding: '15px',
     borderRadius: '8px',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
     cursor: 'pointer',
     transition: '0.3s',
     overflow: 'hidden',
+    color:'white'
   },
   cardHeader: {
     display: 'flex',

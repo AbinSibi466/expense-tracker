@@ -95,6 +95,7 @@ const ExpenseList = ({ expenses, onEdit }) => {
                 <p style={styles.category}>Category: {expense.category}</p>
                 <p style={styles.tags}>Tags: {expense.tags.join(', ')}</p>
                 <p style={styles.date}>Date: {new Date(expense.date).toLocaleDateString()}</p>
+                <p style={styles.category}>Amount: {expense.amount}</p>
               </div>
               <div style={styles.buttons}>
                 <button
@@ -150,6 +151,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '10px',
+    
   },
   listItem: {
     display: 'flex',
@@ -159,7 +161,8 @@ const styles = {
     borderRadius: '4px',
     border: '1px solid #ddd',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#fff',
+    background: 'linear-gradient(to right, #2c3e50, #4ca1af)',
+    color:'white'
   },
   expenseDetails: {
     flex: '1',

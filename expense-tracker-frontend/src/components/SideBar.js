@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './SideBar.css';
-import { FaHome, FaTags, FaPlus, FaChartPie, FaBars, FaTimes } from 'react-icons/fa';
+import { FaHome, FaTags, FaPlus, FaChartPie, FaBars, FaTimes, FaSignOutAlt } from 'react-icons/fa';
 
-const Sidebar = () => {
+const Sidebar = ({ onLogout }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
@@ -18,23 +18,28 @@ const Sidebar = () => {
         <ul>
           <li>
             <NavLink to="/">
-              <FaHome /> <span>Dashboard</span>
+              <FaHome /> {!isCollapsed && <span>Dashboard</span>}
             </NavLink>
           </li>
           <li>
             <NavLink to="/add-expense">
-              <FaPlus /> <span>Add Expense</span>
+              <FaPlus /> {!isCollapsed && <span>Add Expense</span>}
             </NavLink>
           </li>
           <li>
             <NavLink to="/categories">
-              <FaChartPie /> <span>Categories</span>
+              <FaChartPie /> {!isCollapsed && <span>Categories</span>}
             </NavLink>
           </li>
           <li>
             <NavLink to="/tags">
-              <FaTags /> <span>Tags</span>
+              <FaTags /> {!isCollapsed && <span>Tags</span>}
             </NavLink>
+          </li>
+          <li>
+            <button onClick={onLogout} className="logout-button">
+              <FaSignOutAlt /> {!isCollapsed && <span>Logout</span>}
+            </button>
           </li>
         </ul>
       </nav>
